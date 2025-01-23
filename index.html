@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <title>Home - Just Stream It</title>
 </head>
-<body class="bg-slate-100 px-8 py-6 font-['Oswald']">
+<body class="flex flex-col bg-slate-100 px-8 py-6 font-['Oswald'] gap-6">
     <div class="absolute top-1 left-1">
         <span class="sm:hidden">XS</span>
         <span class="hidden sm:block  md:hidden">SM</span>
@@ -17,55 +17,63 @@
         <span class="hidden 2xl:block 3xl:hidden">2XL</span>
         <span class="hidden 3xl:block 4xl:hidden">3XL</span>
     </div>
-    <header class=" flex flex-row bg-slate-500 justify-center border border-slate-950 items-center lg:justify-start px-4 pt-1 gap-8">
-        <img src="images/logo_JSI.png" alt="Logo de Just Stream It">
-        <h1 class="hidden md:block text-slate-50 text-4xl font-extralight ">Vidéo à la demande</h1>
+    <header class=" flex flex-row bg-slate-500 justify-center border border-slate-950 items-center md:justify-start px-4 pt-1 gap-8 ">
+        <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="Logo de Just Stream It" class="w-60 ">
+        <h1 class="hidden md:block text-slate-50 text-5xl font-light ">Vidéo à la demande</h1>
     </header>
-    <main class="">
-        <section class="meilleur-film">
-            <h2>Meilleur film</h2>
-            <div>
-                <img src="images/metropolis.jpg" alt="Image film" style="width: 227px; height: 334px; object-fit: cover;">
-                <div>
-                    <h3>Titre du meilleur film</h3>
-                    <p>Résumé du meilleur film</p>
-                    <button>Détails</button>
+    <main class="flex flex-col items-center gap-8">
+        
+        <section id="meilleur-film" 
+        class="meilleur-film flex flex-col items-center md:items-start gap-6">
+
+            <h2 id="meilleur-film-title" 
+            class="text-4xl md:text-5xl lg:text-6xl font-semibold">
+            Meilleur film
+            </h2>
+
+            <div id="meilleur-film-content" class="flex flex-col md:flex-row md:h-72 lg:h-96 gap-4 border-8 border-slate-950 p-3">
+                <img src="images/metropolis.jpg" alt="Image film" class="h-full w-auto object-contain max-md:aspect-square max-md:object-cover">
+                <div id="meilleur-film-description" class="flex flex-col gap-2 flex-1">
+                    <h3 class="text-4xl md:text-5xl lg:text-6xl font-semibold">Titre du meilleur film</h3>
+                    <p class="text-md md:text-lg lg:text-xl font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illum, enim alias dolore quaerat itaque sapiente libero! Deserunt porro non sapiente modi quod eum iusto, officiis nemo obcaecati doloremque reprehenderit.</p>
+                    <button class="text-lg md:text-xl lg:text-2xl bg-red-600 text-white w-fit px-6 py-2 rounded-3xl self-center md:self-end mt-auto">Détails</button>
                 </div>
             </div>
+        
         </section>
         <section class="cat-1">
             <h2>Nom de la catégorie 1</h2>
             <table class="table-cat-1">
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 1 categorie 1</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 2 categorie 1</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 3 categorie 1</h3>
                         <button>Détails</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 4 categorie 1</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 5 categorie 1</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 6 categorie 1</h3>
                         <button>Détails</button>
                     </td>
@@ -77,34 +85,34 @@
             <table class="table-cat-2">
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 1 categorie 2</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 2 categorie 2</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 3 categorie 2</h3>
                         <button>Détails</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 4 categorie 2</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 5 categorie 2</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 6 categorie 2</h3>
                         <button>Détails</button>
                     </td>
@@ -116,34 +124,34 @@
             <table class="table-cat-3">
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 1 categorie 3</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 2 categorie 3</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 3 categorie 3</h3>
                         <button>Détails</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 4 categorie 3</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 5 categorie 3</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 6 categorie 3</h3>
                         <button>Détails</button>
                     </td>
@@ -163,34 +171,34 @@
             <table class="table-cat-custom">
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 1 categorie custom</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 2 categorie custom</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 3 categorie custom</h3>
                         <button>Détails</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 4 categorie custom</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 5 categorie custom</h3>
                         <button>Détails</button>
                     </td>
                     <td>
-                        <img src="images/metropolis.jpg" alt="Image film" style="width: 252px; height: 247px; object-fit: cover;">
+                        <img src="images/metropolis.jpg" alt="Image film">
                         <h3>Titre du film 6 categorie custom</h3>
                         <button>Détails</button>
                     </td>
