@@ -17,9 +17,11 @@
         <span class="hidden 2xl:block 3xl:hidden">2XL</span>
         <span class="hidden 3xl:block 4xl:hidden">3XL</span>
     </div>
-    <header class=" flex flex-row bg-slate-500 justify-center border border-slate-950 items-center md:justify-start px-4 pt-1 gap-8 ">
-        <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="Logo de Just Stream It" class="w-60 ">
-        <h1 class="hidden md:block text-slate-50 text-5xl font-light ">Vidéo à la demande</h1>
+    <header class="flex flex-row bg-slate-500 justify-center border border-slate-950 items-center md:justify-start px-4 pt-1">
+        <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="Logo de Just Stream It" class="w-60 md:w-40">
+        <div class="md:flex-1 md:flex md:justify-center">
+            <h1 class="hidden md:block text-slate-50 text-4xl font-light">Vidéo à la demande</h1>
+        </div>
     </header>
     <main class="flex flex-col items-center gap-8">
         
@@ -256,18 +258,21 @@
         class="flex flex-col items-center md:items-start gap-6">
 
             <div id="cat-custom-title"
-            class="flex flex-row gap-2">
+            class="flex flex-row items-center gap-2">
                 <h2 class="text-4xl hidden md:block md:text-5xl lg:text-6xl font-semibold">
                 Autres :
                 </h2>
 
-                <select id="cat-custom-select"
-                class="text-4xl font-semibold px-2 py-1">
-                    <option value="option1" class="text-4xl font-semibold">catégorie 1</option>
-                    <option value="option2" class="text-4xl font-semibold">catégorie 2</option>
-                    <option value="option3" class="text-4xl font-semibold">catégorie 3</option>
-                    <option value="option4" class="text-4xl font-semibold">catégorie 4</option>
-                </select>
+                <div id="cat-custom-select"
+                    class="relative w-fit ml-4 mt-2">
+                    <select class="text-4xl font-semibold px-4 py-4 pr-14 appearance-none border-2 border-slate-950">
+                        <option value="option1" class="font-semibold">Catégorie 1</option>
+                        <option value="option2" class="font-semibold">Catégorie 2</option>
+                        <option value="option3" class="font-semibold">Catégorie 3</option>
+                        <option value="option4" class="font-semibold">Catégorie 4</option>
+                    </select>
+                    <span class="text-3xl absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">▼</span>
+                </div>
             </div>
             <div id="cat-custom-grid"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4">
