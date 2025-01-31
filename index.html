@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <title>Home - Just Stream It</title>
 </head>
-<body class="flex flex-col bg-slate-100 px-8 py-6 font-['Oswald'] gap-6">
+<body class="flex flex-col bg-slate-100 px-14 py-10 font-['Oswald'] gap-6">
     <div class="absolute top-1 left-1">
         <span class="sm:hidden">XS</span>
         <span class="hidden sm:block  md:hidden">SM</span>
@@ -24,7 +24,7 @@
     <main class="flex flex-col items-center gap-8">
         
         <section id="meilleur-film" 
-        class="meilleur-film flex flex-col items-center md:items-start gap-6">
+        class="flex flex-col items-center md:items-start gap-6">
 
             <h2 id="meilleur-film-title" 
             class="text-4xl md:text-5xl lg:text-6xl font-semibold">
@@ -41,47 +41,85 @@
             </div>
         
         </section>
-        <section class="cat-1">
-            <h2>Nom de la catégorie 1</h2>
-            <table class="table-cat-1">
-                <tr>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 1 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 2 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 3 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 4 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 5 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                    <td>
-                        <img src="images/metropolis.jpg" alt="Image film">
-                        <h3>Titre du film 6 categorie 1</h3>
-                        <button>Détails</button>
-                    </td>
-                </tr>
-            </table>
+
+        <section id="cat-1"
+            class="flex flex-col items-center md:items-start gap-6">
+
+            <h2 id="cat-1-title"
+                class="text-4xl md:text-5xl lg:text-6xl font-semibold">
+            Catégorie 1
+            </h2>
+
+            <div id="cat-1-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4">
+                <div id="cat-1-1"
+                class="relative">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+                <div id="cat-1-2"
+                class="relative">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 2 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+                <div id="cat-1-3"
+                class="relative hidden md:block">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 3 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+                <div id="cat-1-4"
+                class="relative hidden md:block">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 4 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+                <div id="cat-1-5"
+                class="relative hidden lg:block">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 5 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+                <div id="cat-1-6"
+                class="relative hidden lg:block">
+                    <img src="images/metropolis.jpg" alt="Image film"
+                        class="object-cover aspect-square">
+                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 6 categorie 1</h3>
+                        <button class="bg-slate-900 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                    </div>
+                </div>
+            </div>
+            <button class="text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
+                Voir plus
+            </button>
+
         </section>
-        <section class="cat-2">
-            <h2>Nom de la catégorie 2</h2>
+        <section id="cat-2"
+        class="flex flex-col items-center md:items-start gap-6">
+
+            <h2 id="cat-2-title"
+            class="text-4xl md:text-5xl lg:text-6xl font-semibold">
+            Catégorie 2
+            </h2>
+
             <table class="table-cat-2">
                 <tr>
                     <td>
@@ -119,8 +157,13 @@
                 </tr>
             </table>
         </section>
-        <section class="cat-3">
-            <h2>Nom de la catégorie 3</h2>
+        <section id="cat-3"
+        class="flex flex-col items-center md:items-start gap-6">
+
+            <h2 id="cat-3-title"
+            class="text-4xl md:text-5xl lg:text-6xl font-semibold">
+            Catégorie 3
+            </h2>
             <table class="table-cat-3">
                 <tr>
                     <td>
@@ -158,14 +201,21 @@
                 </tr>
             </table>
         </section>
-        <section class="cat-custom">
-            <div>
-                <h2>Autres :</h2>
-                <select>
-                    <option value="option1">catégorie 1</option>
-                    <option value="option2">catégorie 2</option>
-                    <option value="option3">catégorie 3</option>
-                    <option value="option4">catégorie 4</option>
+        <section id="cat-custom"
+        class="flex flex-col items-center md:items-start gap-6">
+
+            <div id="cat-custom-title"
+            class="flex flex-row gap-2">
+                <h2 class="text-4xl hidden md:block md:text-5xl lg:text-6xl font-semibold">
+                Autres :
+                </h2>
+
+                <select id="cat-custom-select"
+                class="text-4xl font-semibold px-2 py-1">
+                    <option value="option1" class="text-4xl font-semibold">catégorie 1</option>
+                    <option value="option2" class="text-4xl font-semibold">catégorie 2</option>
+                    <option value="option3" class="text-4xl font-semibold">catégorie 3</option>
+                    <option value="option4" class="text-4xl font-semibold">catégorie 4</option>
                 </select>
             </div>
             <table class="table-cat-custom">
