@@ -23,14 +23,18 @@ async function fetchBestMovie() {
     }
 }
 
-async function fetchCategoryMovies(category) {
+async function fetchCategoryMovies(categoryName) {
     try { 
-        const response = await fetch(`${API_BASE_URL}/titles/?genre=${category}&sort_by=-imdb_score&page_size=6`);
+        const response = await fetch(`${API_BASE_URL}/titles/?genre=${categoryName}&sort_by=-imdb_score&page_size=6`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
+        if (!data.results.length) {
+            throw new Error('La catégorie n\'existe pas ou est vide');
+        }
+
         const moviesIds = [];
         for (let i = 0; i < data.results.length; i++) {
             moviesIds.push(data.results[i].id);
