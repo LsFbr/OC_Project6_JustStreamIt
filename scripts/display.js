@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', displayBestMovie);
+document.addEventListener('DOMContentLoaded',displayBestMovie);
+document.addEventListener('DOMContentLoaded',displayCategory1Movies);
 
 async function displayBestMovie() {
     const movie = await fetchBestMovie();
@@ -10,4 +11,9 @@ async function displayBestMovie() {
     
     document.querySelector('#meilleur-film-description h3').textContent = movie.title;
     document.querySelector('#meilleur-film-description p').textContent = movie.description;
+}
+
+async function displayCategory1Movies() {
+    const movies = await fetchCategoryMovies(CATEGORY_1);
+    console.log(movies);
 }
