@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded',displayBestMovie);
 document.addEventListener('DOMContentLoaded',displayCategoryMovies);
 document.addEventListener('DOMContentLoaded',displayCustomCategoryChoices);
 document.addEventListener('DOMContentLoaded',setupShowMoreButtons);
+document.addEventListener('DOMContentLoaded',displayCategoryTitles);
 
 const selectElement = document.getElementById('cat-custom-select');
 selectElement.addEventListener('change', displayCustomCategoryMovies);
@@ -13,7 +14,7 @@ function setupShowMoreButtons() {
         if (!buttonElement) return;
 
         const hiddenMovies = document.querySelectorAll(`#${categoryIdentifiers[i]}-grid .hidden`);
-        
+
         buttonElement.addEventListener('click', () => {
             
             if (buttonElement.textContent === 'Voir plus') {
@@ -30,6 +31,21 @@ function setupShowMoreButtons() {
                 buttonElement.textContent = 'Voir plus';
             }
         });
+    }
+}
+
+function displayCategoryTitles() {
+    const categories = {
+        1: CATEGORY_1,
+        2: CATEGORY_2,
+        3: CATEGORY_3,
+    }
+
+    for (let i = 1; i <= Object.keys(categories).length; i++) {
+        const titleElement = document.getElementById(`cat-${i}-title`);
+        if (!titleElement) return;
+
+        titleElement.textContent = categories[i];
     }
 }
 
