@@ -11,25 +11,22 @@ function setupShowMoreButtons() {
     const categoryIdentifiers = ['cat-1', 'cat-2', 'cat-3', 'cat-custom'];
     for (let i = 0; i < categoryIdentifiers.length; i++) {
         const buttonElement = document.getElementById(`${categoryIdentifiers[i]}-show-more`);
-        if (!buttonElement) return;
+        if (!buttonElement) continue;
 
         const hiddenMovies = document.querySelectorAll(`#${categoryIdentifiers[i]}-grid .hidden`);
 
         buttonElement.addEventListener('click', () => {
             
-            if (buttonElement.textContent === 'Voir plus') {
-                for (let j = 0; j < hiddenMovies.length; j++) {
-                    hiddenMovies[j].classList.remove('hidden');
-                    hiddenMovies[j].classList.add('block');
-                }
-                buttonElement.textContent = 'Voir moins';
-            } else {
-                for (let j = 0; j < hiddenMovies.length; j++) {
-                    hiddenMovies[j].classList.remove('block');
-                    hiddenMovies[j].classList.add('hidden');
-                }
-                buttonElement.textContent = 'Voir plus';
-            }
+            let isShowingMore = buttonElement.getAttribute('show-more') === 'true';
+
+            hiddenMovies.forEach(hiddenMovie => {
+                hiddenMovie.classList.toggle('hidden', isShowingMore);
+                hiddenMovie.classList.toggle('block', !isShowingMore);
+            });
+
+            buttonElement.setAttribute('show-more', !isShowingMore);
+            isShowingMore = !isShowingMore;
+            buttonElement.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
         });
     }
 }
