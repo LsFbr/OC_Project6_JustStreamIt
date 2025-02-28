@@ -1,9 +1,37 @@
 document.addEventListener('DOMContentLoaded',displayBestMovie);
 document.addEventListener('DOMContentLoaded',displayCategoryMovies);
 document.addEventListener('DOMContentLoaded',displayCustomCategoryChoices);
+document.addEventListener('DOMContentLoaded',setupShowMoreButtons);
 
 const selectElement = document.getElementById('cat-custom-select');
 selectElement.addEventListener('change', displayCustomCategoryMovies);
+
+function setupShowMoreButtons() {
+    const categoryIdentifiers = ['cat-1', 'cat-2', 'cat-3', 'cat-custom'];
+    for (let i = 0; i < categoryIdentifiers.length; i++) {
+        const buttonElement = document.getElementById(`${categoryIdentifiers[i]}-show-more`);
+        if (!buttonElement) return;
+
+        const hiddenMovies = document.querySelectorAll(`#${categoryIdentifiers[i]}-grid .hidden`);
+        
+        buttonElement.addEventListener('click', () => {
+            
+            if (buttonElement.textContent === 'Voir plus') {
+                for (let j = 0; j < hiddenMovies.length; j++) {
+                    hiddenMovies[j].classList.remove('hidden');
+                    hiddenMovies[j].classList.add('block');
+                }
+                buttonElement.textContent = 'Voir moins';
+            } else {
+                for (let j = 0; j < hiddenMovies.length; j++) {
+                    hiddenMovies[j].classList.remove('block');
+                    hiddenMovies[j].classList.add('hidden');
+                }
+                buttonElement.textContent = 'Voir plus';
+            }
+        });
+    }
+}
 
 async function displayBestMovie() {
     const movie = await fetchBestMovie();

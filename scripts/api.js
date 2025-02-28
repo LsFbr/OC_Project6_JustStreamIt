@@ -82,7 +82,6 @@ async function fetchAllCategoriesNames() {
         for (let i = 0; i < allGenresData.results.length; i++) {
             allGenres.push(allGenresData.results[i].name);
         }
-        console.log(allGenres);
         return allGenres;
         
     } catch (error) {
