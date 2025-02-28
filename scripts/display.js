@@ -68,6 +68,9 @@ async function displayCategory1Movies() {
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
         const imgElement = document.querySelector(`#cat-1-${i + 1} img`);
+        imgElement.onerror = () => {
+            imgElement.src = 'images/no_image.png';
+        };
         imgElement.src = movie.image_url;
         imgElement.alt = `Affiche du film ${movie.title}`;
 
@@ -82,6 +85,9 @@ async function displayCategory2Movies() {
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
         const imgElement = document.querySelector(`#cat-2-${i + 1} img`);
+        imgElement.onerror = () => {
+            imgElement.src = 'images/no_image.png';
+        };
         imgElement.src = movie.image_url;
         imgElement.alt = `Affiche du film ${movie.title}`;
 
@@ -96,6 +102,9 @@ async function displayCategory3Movies() {
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
         const imgElement = document.querySelector(`#cat-3-${i + 1} img`);
+        imgElement.onerror = () => {
+            imgElement.src = 'images/no_image.png';
+        };
         imgElement.src = movie.image_url;
         imgElement.alt = `Affiche du film ${movie.title}`;
 
@@ -111,6 +120,9 @@ async function displayCustomCategoryMovies() {
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
         const imgElement = document.querySelector(`#cat-custom-${i + 1} img`);
+        imgElement.onerror = () => {
+            imgElement.src = 'images/no_image.png';
+        };
         imgElement.src = movie.image_url;
         imgElement.alt = `Affiche du film ${movie.title}`;
 
