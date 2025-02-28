@@ -60,3 +60,33 @@ async function fetchCategoryMovies(categoryName) {
         return null;
     }
 }
+
+async function fetchAllCategoriesNames() {
+    try {
+        const genresResponse = await fetch(`${API_BASE_URL}/genres`);
+        if (!genresResponse.ok) {
+            throw new Error(`HTTP error! status: ${genresResponse.status}`);
+        }
+        const genresData = await genresResponse.json();
+
+        const numberOfCategories = genresData.count
+
+
+        const allGenresResponse = await fetch(`${API_BASE_URL}/genres/?page_size=${numberOfCategories}`);
+        if (!allGenresResponse.ok) {
+            throw new Error(`HTTP error! status: ${allGenresResponse.status}`);
+        }
+        const allGenresData = await allGenresResponse.json();
+
+        const allGenres = [];
+        for (let i = 0; i < allGenresData.results.length; i++) {
+            allGenres.push(allGenresData.results[i].name);
+        }
+        console.log(allGenres);
+        return allGenres;
+        
+    } catch (error) {
+        console.error('Erreur lors de la récupération des catégories:', error);
+        return null;
+    }
+}
