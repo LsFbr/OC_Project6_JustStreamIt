@@ -52,11 +52,12 @@ async function fetchCategoryMovies(categoryName) {
             }
 
             const detailsData = await detailsResponse.json();
+            console.log(detailsData);
             moviesDetails.push(detailsData);
         }
         return moviesDetails;
     } catch (error) {
-        console.error('Erreur lors de la récupération des films de la catégorie:', error);
+        console.error(`Erreur lors de la récupération des films de la catégorie ${categoryName} :`, error);
         return null;
     }
 }
@@ -86,6 +87,19 @@ async function fetchAllCategoriesNames() {
         
     } catch (error) {
         console.error('Erreur lors de la récupération des catégories:', error);
+        return null;
+    }
+}
+
+async function fetchMovieDetails(movieId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/titles/${movieId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(`Erreur lors de la récupération des détails du film ${movieId} :`, error);
         return null;
     }
 }
