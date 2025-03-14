@@ -181,6 +181,22 @@ async function displayCustomCategoryChoices() {
     }
 }
 
+function formatCurrency(amount) {
+    if (!amount) return "";    
+    if (isNaN(amount)) return "";
+    
+    if (amount >= 1000000000) {
+        return "$" + (amount / 1000000000).toFixed(2) + "B";
+    } else if (amount >= 1000000) {
+        return "$" + (amount / 1000000).toFixed(2) + "M";
+    } else if (amount >= 1000) {
+        return "$" + (amount / 1000).toFixed(2) + "k";
+    } else {
+        return "$" + amount;
+    }
+}
+
+
 async function displayModal(movieId) {
     try {
         const movieDetails = await fetchMovieDetails(movieId);
@@ -217,8 +233,9 @@ async function displayModal(movieId) {
         modalImdbScore.textContent = "IMDB Score: " + movieDetails.imdb_score + "/10";
 
         const modalGrossIncome = document.getElementById('modal-gross-income');
-        if (movieDetails.worldwide_gross_income) {
-            modalGrossIncome.textContent = "Recette au box-office: " + movieDetails.worldwide_gross_income + " $";
+        let grossIncome = formatCurrency(movieDetails.worldwide_gross_income);
+        if (grossIncome) {
+            modalGrossIncome.textContent = "Recette au box-office: " + grossIncome;
         } else {
             modalGrossIncome.textContent = "";
         }
