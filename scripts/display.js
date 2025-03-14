@@ -198,26 +198,30 @@ async function displayModal(movieId) {
         modalYear.textContent = movieDetails.year;
 
         const modalGenres = document.getElementById('modal-genres');
-        modalGenres.textContent = "- " + movieDetails.genres.join(', ');
+        modalGenres.textContent = "\u00A0- " + movieDetails.genres.join(', ');
 
         const modalRated = document.getElementById('modal-rated');
         if (Number.isInteger(parseInt(movieDetails.rated,10))) {
-            modalRated.textContent = "PG-" + movieDetails.rated;
+            modalRated.textContent = "PG-" + movieDetails.rated + " -\u00A0";
         } else {
-            modalRated.textContent = "Not rated or unknown rating";
+            modalRated.textContent = "";
         }
 
         const modalDuration = document.getElementById('modal-duration');
-        modalDuration.textContent = "- " + movieDetails.duration + " minutes";
+        modalDuration.textContent = movieDetails.duration + " minutes";
 
         const modalCountries = document.getElementById('modal-countries');
-        modalCountries.textContent = " (" + movieDetails.countries.join(' / ') + ")";
+        modalCountries.textContent = "\u00A0(" + movieDetails.countries.join(' / ') + ")";
 
         const modalImdbScore = document.getElementById('modal-imdb-score');
         modalImdbScore.textContent = "IMDB Score: " + movieDetails.imdb_score + "/10";
 
         const modalGrossIncome = document.getElementById('modal-gross-income');
-        modalGrossIncome.textContent = "Recette au box-office: " + movieDetails.worldwide_gross_income;
+        if (movieDetails.worldwide_gross_income) {
+            modalGrossIncome.textContent = "Recette au box-office: " + movieDetails.worldwide_gross_income + " $";
+        } else {
+            modalGrossIncome.textContent = "";
+        }
 
         const modalDirectors = document.getElementById('modal-directors');
         if (modalDirectors) {
