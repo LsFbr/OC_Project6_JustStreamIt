@@ -51,8 +51,7 @@ async function fetchCategoryMovies(categoryName) {
                 throw new Error(`HTTP error! status: ${detailsResponse.status}`);
             }
 
-            const detailsData = await detailsResponse.json();
-            console.log(detailsData);
+            const detailsData = await detailsResponse.json();            
             moviesDetails.push(detailsData);
         }
         return moviesDetails;

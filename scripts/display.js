@@ -253,10 +253,6 @@ async function displayModal(movieId) {
             actorsLabel.textContent = "";
         }
 
-
-
-
-
         modal.classList.remove('hidden');    
     } catch (error) {
         console.error('Erreur lors de la récupération des détails du film:', error);

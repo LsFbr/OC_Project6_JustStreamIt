@@ -41,7 +41,7 @@
                 <img src="images/no_image.png" alt="Image film" class="h-full w-auto object-contain max-md:aspect-square max-md:object-cover">
                 <div id="meilleur-film-description" class="flex flex-col gap-2 flex-1">
                     <h3 class="text-4xl md:text-5xl lg:text-6xl font-semibold">Titre du meilleur film</h3>
-                    <p class="text-md md:text-lg lg:text-xl font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illum, enim alias dolore quaerat itaque sapiente libero! Deserunt porro non sapiente modi quod eum iusto, officiis nemo obcaecati doloremque reprehenderit.</p>
+                    <p class="text-base md:text-lg lg:text-xl font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illum, enim alias dolore quaerat itaque sapiente libero! Deserunt porro non sapiente modi quod eum iusto, officiis nemo obcaecati doloremque reprehenderit.</p>
                     <button movie-id="" class="details-button text-lg md:text-xl lg:text-2xl bg-red-600 text-white w-fit px-6 py-2 rounded-3xl self-center md:self-end mt-auto">Détails</button>
                 </div>
             </div>
@@ -337,50 +337,46 @@
         </section>
     </main>
     <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 overflow-y-auto overscroll-contain hide-scrollbar">
-        <div class="min-h-screen px-12 py-10 flex items-center justify-center">
-            <div id="modal-content" class="md:max-w-xl bg-slate-50 shadow-3xl p-5 w-full border-8 border-slate-950">
+        <div id="modal-content" class="bg-slate-50 shadow-3xl p-5 min-h-screen w-full border-8 border-slate-950 flex flex-col">
+            <div class="lg:flex flex-row justify-between gap-1">
                 <div>
-                    <div class="md:flex flex-row justify-between">
-                        <div>
-                            <div class="flex flex-row w-full justify-between mb-1">
-                                <h2 id="modal-title" class="text-3xl md:text-4xl lg:text-5xl font-bold">Titre du film</h2>
-                                <button id="modal-close-small" class="md:hidden text-2xl modal-close">❌</button>
-                            </div>
-                            <div class="flex flex-row md:text-lg lg:text-xl font-bold">
-                                <h3 id="modal-year"></h3>
-                                <h3 id="modal-genres"></h3>
-                            </div>
-                            <div class="flex flex-row md:text-lg lg:text-xl font-bold">
-                                <h3 id="modal-rated"></h3> 
-                                <h3 id="modal-duration"></h3>
-                                <h3 id="modal-countries"></h3>
-                            </div>
-                            <div class="md:text-lg lg:text-xl font-bold">
-                                <h3 id="modal-imdb-score"></h3>
-                                <h3 id="modal-gross-income"></h3>
-                            </div>
-                            <div class="md:text-lg lg:text-xl mt-4">
-                                <p id="modal-directors-label"></p>
-                                <p id="modal-directors" class="font-light"></p>
-                            </div>
-                        </div>
-                        <img id="modal-image-large" src="images/no_image.png" alt="Image film" 
-                        class="modal-image hidden md:block h-72 lg:h-96 w-auto">
-                    </div>             
+                    <div class="flex flex-row w-full justify-between items-start mb-1">
+                        <h2 id="modal-title" class="text-3xl md:text-4xl lg:text-5xl font-bold">Titre du film</h2>
+                        <button id="modal-close-small" class="lg:hidden text-2xl modal-close">❌</button>
+                    </div>
+                    <div class="flex flex-row md:text-lg lg:text-xl font-bold">
+                        <h3 id="modal-year"></h3>
+                        <h3 id="modal-genres"></h3>
+                    </div>
+                    <div class="flex flex-row md:text-lg lg:text-xl font-bold">
+                        <h3 id="modal-rated"></h3> 
+                        <h3 id="modal-duration"></h3>
+                        <h3 id="modal-countries"></h3>
+                    </div>
+                    <div class="md:text-lg lg:text-xl font-bold">
+                        <h3 id="modal-imdb-score"></h3>
+                        <h3 id="modal-gross-income"></h3>
+                    </div>
+                    <div class="md:text-lg lg:text-xl mt-4">
+                        <p id="modal-directors-label"></p>
+                        <p id="modal-directors" class="font-light"></p>
+                    </div>
                 </div>
-                <p id="modal-long-description" class="md:mt-4 md:text-lg lg:text-xl font-light"></p>
-                <img id="modal-image-small" src="images/no_image.png" alt="Image film" 
-                    class="modal-image md:hidden w-full mt-4">
-                <div class="mt-4 text-sm md:text-md lg:text-lg">  
-                    <p id="modal-actors-label"></p>
-                    <p id="modal-actors" class="font-light"></p>   
-                </div>
-                <div class="flex justify-center">
-                    <button id="modal-close-large" class="modal-close hidden md:block bg-red-600 text-slate-50 w-fit px-14 py-2 rounded-3xl mt-4">
-                        Fermer
-                    </button>
-                </div>
+                <img id="modal-image-large" src="images/no_image.png" alt="Image film" 
+                class="modal-image hidden lg:block h-96 w-auto">
+            </div>             
 
+            <p id="modal-long-description" class="mt-4 md:text-lg lg:text-xl font-light"></p>
+            <img id="modal-image-small" src="images/no_image.png" alt="Image film" 
+                class="modal-image lg:hidden w-full mt-4">
+            <div class="mt-4 text-sm md:text-base lg:text-lg">  
+                <p id="modal-actors-label"></p>
+                <p id="modal-actors" class="font-light"></p>   
+            </div>
+            <div class="flex justify-center mt-auto">
+                <button id="modal-close-large" class="modal-close hidden lg:block bg-red-600 text-slate-50 w-fit px-14 py-2 rounded-3xl mt-4">
+                    Fermer
+                </button>
             </div>
         </div>
     </div>
