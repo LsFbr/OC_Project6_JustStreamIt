@@ -15,7 +15,7 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('click', (event) => {
-    if (event.target.id === 'close-modal') {
+    if (event.target.classList.contains('modal-close')) {
         closeModal();
     }
 });
@@ -235,12 +235,14 @@ async function displayModal(movieId) {
         const modalLongDescription = document.getElementById('modal-long-description');
         modalLongDescription.textContent = movieDetails.long_description;
 
-        const modalImage = document.getElementById('modal-image');
-        modalImage.onerror = () => {
-            modalImage.src = 'images/no_image.png';
-        };
-        modalImage.src = movieDetails.image_url;
-        modalImage.alt = `Affiche du film ${movieDetails.title}`;
+        const modalImages = document.querySelectorAll('.modal-image');
+        modalImages.forEach(modalImage => {
+            modalImage.onerror = () => {
+                modalImage.src = 'images/no_image.png';
+            };
+            modalImage.src = movieDetails.image_url;
+            modalImage.alt = `Affiche du film ${movieDetails.title}`;
+        });
 
         const modalActors = document.getElementById('modal-actors');
         if (modalActors) {
