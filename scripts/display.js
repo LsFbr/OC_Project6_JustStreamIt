@@ -11,7 +11,7 @@ selectElement.addEventListener('change', displayCustomCategory);
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('details-button')) {
-        const movieId = event.target.getAttribute('movie-id');
+        const movieId = event.target.getAttribute('data-movie-id');
         displayModal(movieId);
     }
 });
@@ -32,14 +32,14 @@ function setupShowMoreButtons() {
 
         buttonElement.addEventListener('click', () => {
             
-            let isShowingMore = buttonElement.getAttribute('show-more') === 'true';
+            let isShowingMore = buttonElement.getAttribute('data-show-more') === 'true';
 
             hiddenMovies.forEach(hiddenMovie => {
                 hiddenMovie.classList.toggle('hidden', isShowingMore);
                 hiddenMovie.classList.toggle('block', !isShowingMore);
             });
 
-            buttonElement.setAttribute('show-more', !isShowingMore);
+            buttonElement.setAttribute('data-show-more', !isShowingMore);
             isShowingMore = !isShowingMore;
             buttonElement.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
         });
@@ -55,21 +55,21 @@ function setupCustomShowMoreButton() {
     const newButton = buttonElement.cloneNode(true);
     buttonElement.parentNode.replaceChild(newButton, buttonElement);
     
-    newButton.setAttribute('show-more', 'false');
+    newButton.setAttribute('data-show-more', 'false');
     newButton.textContent = 'Voir plus';
 
     const hiddenMovies = document.querySelectorAll('#cat-custom-grid .hidden');
     
     newButton.addEventListener('click', () => {
          
-        let isShowingMore = newButton.getAttribute('show-more') === 'true';
+        let isShowingMore = newButton.getAttribute('data-show-more') === 'true';
         
         hiddenMovies.forEach(hiddenMovie => {
             hiddenMovie.classList.toggle('hidden', isShowingMore);
             hiddenMovie.classList.toggle('block', !isShowingMore);
         });
         
-        newButton.setAttribute('show-more', !isShowingMore);
+        newButton.setAttribute('data-show-more', !isShowingMore);
         isShowingMore = !isShowingMore;
         newButton.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
     });
@@ -87,7 +87,7 @@ async function displayBestMovie() {
     document.querySelector('#meilleur-film-description p').textContent = movie.description;
 
     const detailsButton = document.querySelector('#meilleur-film-content .details-button');
-    detailsButton.setAttribute('movie-id', movie.id);
+    detailsButton.setAttribute('data-movie-id', movie.id);
 }
 
 function createCategorySection(categoryId, categoryName) {
@@ -124,7 +124,7 @@ function createMovieCard(movie) {
     titleElement.textContent = movie.title;
 
     const detailsButton = cloneMovieCard.querySelector('.details-button');
-    detailsButton.setAttribute('movie-id', movie.id);
+    detailsButton.setAttribute('data-movie-id', movie.id);
 
     return cloneMovieCard;
 }
@@ -156,7 +156,6 @@ async function displayCategories() {
         const movieCardsNumber = categorySection.querySelectorAll('.movie-card').length;
         const showMoreButtonElement = categorySection.querySelector('.show-more-button');
         const gridElement = categorySection.querySelector('.category-grid');
-
         setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement);
 
         const customCategorySection = document.getElementById('cat-custom');
@@ -186,22 +185,19 @@ async function displayCustomCategory() {
     const customCategorySection = document.getElementById('cat-custom');
     const gridElement = document.getElementById('cat-custom-grid');
 
-    console.log(typeof customCategorySection);
-    console.log(typeof document);
-
     if (gridElement) {
         gridElement.innerHTML = '';
     }
 
-    for (let j = 0; j < movies.length; j++) {
-        const movie = movies[j];
+    for (let i = 0; i < movies.length; i++) {
+        const movie = movies[i];
         const movieCard = createMovieCard(movie);
 
         const movieCardElement = movieCard.querySelector('.movie-card');
         
-        if (j >= 2 && j <= 3) {
+        if (i >= 2 && i <= 3) {
             movieCardElement.classList.add('hidden', 'md:block');
-        } else if (j >= 4) {
+        } else if (i >= 4) {
             movieCardElement.classList.add('hidden', 'lg:block');
         }
 
@@ -211,7 +207,6 @@ async function displayCustomCategory() {
 
     const movieCardsNumber = customCategorySection.querySelectorAll('.movie-card').length;
     const showMoreButtonElement = document.getElementById('cat-custom-show-more');
-    
     setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement);
     
     setupCustomShowMoreButton();

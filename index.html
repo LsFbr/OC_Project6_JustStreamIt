@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo_JSI.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/config.js" defer></script>
     <script src="scripts/utils.js" defer></script>
@@ -24,7 +25,7 @@
     </div>
     <header class="flex flex-row bg-slate-500 justify-center border border-slate-950 items-center md:justify-start px-4 pt-1">
         <img src="https://user.oc-static.com/upload/2020/09/18/16004298163529_P5.png" alt="Logo de Just Stream It" class="w-60 md:w-40">
-        <div class="md:flex-1 md:flex md:justify-center">
+        <div class="absolute left-1/2 -translate-x-1/2">
             <h1 class="hidden md:block text-slate-50 text-4xl lg:text-5xl font-light">Vidéo à la demande</h1>
         </div>
     </header>
@@ -42,7 +43,7 @@
                 <div id="meilleur-film-description" class="flex flex-col gap-2 flex-1">
                     <h3 class="text-4xl md:text-5xl lg:text-6xl font-semibold">Titre du meilleur film</h3>
                     <p class="text-base md:text-lg lg:text-xl font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illum, enim alias dolore quaerat itaque sapiente libero! Deserunt porro non sapiente modi quod eum iusto, officiis nemo obcaecati doloremque reprehenderit.</p>
-                    <button movie-id="" class="details-button text-lg md:text-xl lg:text-2xl bg-red-600 text-white w-fit px-6 py-2 rounded-3xl self-center md:self-end mt-auto">Détails</button>
+                    <button data-movie-id="" class="details-button text-lg md:text-xl lg:text-2xl bg-red-600 text-white w-fit px-6 py-2 rounded-3xl self-center md:self-end mt-auto">Détails</button>
                 </div>
             </div>       
         </section>
@@ -53,9 +54,10 @@
             class="flex flex-col items-center md:items-start gap-8 w-full">
 
             <div id="cat-custom-title"
-            class="flex flex-row items-center gap-2">
+                class="flex flex-row items-center gap-2">
+
                 <h2 class="text-4xl hidden md:block md:text-5xl lg:text-6xl font-semibold">
-                Autres :
+                    Autres :
                 </h2>
 
                 <div id="cat-custom-choice"
@@ -69,11 +71,15 @@
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
                 <!-- Les movieCards seront insérés ici -->
             </div>
-            <button id="cat-custom-show-more" show-more="false" class="text-xl md:text-2xl bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
+            <button id="cat-custom-show-more" data-show-more="false" class="text-xl md:text-2xl bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
                 Voir plus
             </button>
         </section>
     </main>
+    <footer class="bg-slate-500 text-slate-50 py-4 mt-8 text-center">
+        <p class="text-sm">Développé par Louis FABRE</p>
+        <p class="text-sm">&copy; 2025 Just Stream It</p>
+    </footer>
     <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 overflow-y-auto overscroll-contain hide-scrollbar">
         <div id="modal-content" class="bg-slate-50 shadow-3xl p-5 min-h-screen w-full border-8 border-slate-950 flex flex-col">
             <div class="lg:flex flex-row justify-between gap-1">
@@ -83,17 +89,17 @@
                         <button id="modal-close-small" class="lg:hidden text-2xl modal-close">❌</button>
                     </div>
                     <div class="flex flex-row md:text-lg lg:text-xl font-bold">
-                        <h3 id="modal-year"></h3>
-                        <h3 id="modal-genres"></h3>
+                        <p id="modal-year"></p>
+                        <p id="modal-genres"></p>
                     </div>
                     <div class="flex flex-row md:text-lg lg:text-xl font-bold">
-                        <h3 id="modal-rated"></h3> 
-                        <h3 id="modal-duration"></h3>
-                        <h3 id="modal-countries"></h3>
+                        <p id="modal-rated"></p> 
+                        <p id="modal-duration"></p>
+                        <p id="modal-countries"></p>
                     </div>
                     <div class="md:text-lg lg:text-xl font-bold">
-                        <h3 id="modal-imdb-score"></h3>
-                        <h3 id="modal-gross-income"></h3>
+                        <p id="modal-imdb-score"></p>
+                        <p id="modal-gross-income"></p>
                     </div>
                     <div class="md:text-lg lg:text-xl mt-4">
                         <p id="modal-directors-label"></p>
@@ -128,7 +134,7 @@
             <div class="category-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 <!-- Les movieCards seront insérés ici -->
             </div>
-            <button show-more="false" class="show-more-button text-xl md:text-2xl bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
+            <button data-show-more="false" class="show-more-button text-xl md:text-2xl bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
                 Voir plus
             </button>
         </section>
@@ -136,11 +142,11 @@
 
     <template id="movie-card-template">
         <div class="movie-card relative">
-            <img src="images/no_image.png" alt="Image film"
+            <img src="images/no_image.png" alt="Image du film"
                 class="object-cover aspect-square w-full">
             <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 2</h3>
-                <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+                <h3 class="text-slate-50 text-xl font-semibold">Titre du film</h3>
+                <button data-movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
             </div>
         </div>
     </template>
