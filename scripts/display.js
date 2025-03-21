@@ -1,11 +1,13 @@
-document.addEventListener('DOMContentLoaded',displayBestMovie);
-document.addEventListener('DOMContentLoaded',displayCategoryMovies);
-document.addEventListener('DOMContentLoaded',displayCustomCategoryChoices);
-document.addEventListener('DOMContentLoaded',displayCategoryTitles);
-document.addEventListener('DOMContentLoaded',setupShowMoreButtons);
+document.addEventListener('DOMContentLoaded', async function() {
+    await displayBestMovie();
+    await displayCategories();
+    await displayCustomCategory();
+    await displayCustomCategoryChoices();
+    setupShowMoreButtons();
+});
 
 const selectElement = document.getElementById('cat-custom-select');
-selectElement.addEventListener('change', displayCustomCategoryMovies);
+selectElement.addEventListener('change', displayCustomCategory);
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('details-button')) {
@@ -21,11 +23,12 @@ document.addEventListener('click', (event) => {
 });
 
 function setupShowMoreButtons() {
-    const categoryIdentifiers = ['cat-1', 'cat-2', 'cat-3', 'cat-custom'];
+    const categoryIdentifiers = ['cat-1', 'cat-2', 'cat-3'];
     for (let i = 0; i < categoryIdentifiers.length; i++) {
+
         const buttonElement = document.getElementById(`${categoryIdentifiers[i]}-show-more`);
         if (!buttonElement) continue;
-
+        
         const hiddenMovies = document.querySelectorAll(`#${categoryIdentifiers[i]}-grid .hidden`);
 
         buttonElement.addEventListener('click', () => {
@@ -42,21 +45,36 @@ function setupShowMoreButtons() {
             buttonElement.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
         });
     }
+    
+    setupCustomShowMoreButton();
 }
 
-function displayCategoryTitles() {
-    const categories = {
-        1: CATEGORY_1,
-        2: CATEGORY_2,
-        3: CATEGORY_3,
-    }
+function setupCustomShowMoreButton() {
+    const buttonElement = document.getElementById('cat-custom-show-more');
+    if (!buttonElement) return;
 
-    for (let i = 1; i <= Object.keys(categories).length; i++) {
-        const titleElement = document.getElementById(`cat-${i}-title`);
-        if (!titleElement) return;
+    const newButton = buttonElement.cloneNode(true);
+    buttonElement.parentNode.replaceChild(newButton, buttonElement);
+    
+    newButton.setAttribute('show-more', 'false');
+    newButton.textContent = 'Voir plus';
 
-        titleElement.textContent = categories[i];
-    }
+    const hiddenMovies = document.querySelectorAll('#cat-custom-grid .hidden');
+    
+    newButton.addEventListener('click', () => {
+        console.log(hiddenMovies);
+         
+        let isShowingMore = newButton.getAttribute('show-more') === 'true';
+        
+        hiddenMovies.forEach(hiddenMovie => {
+            hiddenMovie.classList.toggle('hidden', isShowingMore);
+            hiddenMovie.classList.toggle('block', !isShowingMore);
+        });
+        
+        newButton.setAttribute('show-more', !isShowingMore);
+        isShowingMore = !isShowingMore;
+        newButton.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
+    });
 }
 
 async function displayBestMovie() {
@@ -74,97 +92,72 @@ async function displayBestMovie() {
     detailsButton.setAttribute('movie-id', movie.id);
 }
 
-async function displayCategory1Movies() {
-    const movies = await fetchCategoryMovies(CATEGORY_1);
-    if (!movies) return;
+function createCategorySection(categoryId, categoryName) {
+    const template = document.getElementById('category-section-template');
+    const cloneCategorySection = template.content.cloneNode(true);
 
-    for (let i = 0; i < movies.length; i++) {
-        const movie = movies[i];
+    const sectionElement = cloneCategorySection.querySelector('.category-section');
+    sectionElement.id = "cat-" + categoryId;
 
-        const imgElement = document.querySelector(`#cat-1-${i + 1} img`);
-        imgElement.onerror = () => {
-            imgElement.src = 'images/no_image.png';
-        };
-        imgElement.src = movie.image_url;
-        imgElement.alt = `Affiche du film ${movie.title}`;
+    const gridElement = cloneCategorySection.querySelector('.category-grid');
+    gridElement.id = "cat-" + categoryId + "-grid";
 
-        document.querySelector(`#cat-1-${i + 1} h3`).textContent = movie.title;
+    const showMoreButton = cloneCategorySection.querySelector('.show-more-button');
+    showMoreButton.id = "cat-" + categoryId + "-show-more";
 
-        const detailsButton = document.querySelector(`#cat-1-${i + 1} .details-button`);
-        detailsButton.setAttribute('movie-id', movie.id);
-    }
+    const titleElement = cloneCategorySection.querySelector('.category-title');
+    titleElement.textContent = categoryName;
+
+    return cloneCategorySection;
 }
 
-async function displayCategory2Movies() {
-    const movies = await fetchCategoryMovies(CATEGORY_2);
-    if (!movies) return;
+function createMovieCard(movie) {
+    const template = document.getElementById('movie-card-template');
+    const cloneMovieCard = template.content.cloneNode(true);
 
-    for (let i = 0; i < movies.length; i++) {
-        const movie = movies[i];
+    const imgElement = cloneMovieCard.querySelector('img');
+    imgElement.onerror = () => {
+        imgElement.src = 'images/no_image.png';
+    };
+    imgElement.src = movie.image_url;
+    imgElement.alt = `Affiche du film ${movie.title}`;
 
-        const imgElement = document.querySelector(`#cat-2-${i + 1} img`);
-        imgElement.onerror = () => {
-            imgElement.src = 'images/no_image.png';
-        };
-        imgElement.src = movie.image_url;
-        imgElement.alt = `Affiche du film ${movie.title}`;
+    const titleElement = cloneMovieCard.querySelector('h3');
+    titleElement.textContent = movie.title;
 
-        document.querySelector(`#cat-2-${i + 1} h3`).textContent = movie.title;
+    const detailsButton = cloneMovieCard.querySelector('.details-button');
+    detailsButton.setAttribute('movie-id', movie.id);
+
+    return cloneMovieCard;
+}
+
+async function displayCategories() {
+    for (let i = 0; i < CATEGORIES.length; i++) {
+        const categoryName = CATEGORIES[i];
+        const categorySection = createCategorySection(i + 1, categoryName);
+
+        const movies = await fetchCategoryMovies(categoryName);
+        if (!movies) continue;
+
+        for (let j = 0; j < movies.length; j++) {
+            const movie = movies[j];
+            const movieCard = createMovieCard(movie);
+
+            const movieCardElement = movieCard.querySelector('.movie-card');
+            
+            if (j >= 2 && j <= 3) {
+                movieCardElement.classList.add('hidden', 'md:block');
+            }
+            if (j >= 4) {
+                movieCardElement.classList.add('hidden', 'lg:block');
+            }
+
+            categorySection.querySelector('.category-grid').appendChild(movieCard);
+        }
         
-        const detailsButton = document.querySelector(`#cat-2-${i + 1} .details-button`);
-        detailsButton.setAttribute('movie-id', movie.id);
+        const customCategorySection = document.getElementById('cat-custom');
+        document.querySelector('main').insertBefore(categorySection, customCategorySection);
     }
-}
-
-async function displayCategory3Movies() {
-    const movies = await fetchCategoryMovies(CATEGORY_3);
-    if (!movies) return;
-
-    for (let i = 0; i < movies.length; i++) {
-        const movie = movies[i];
-
-        const imgElement = document.querySelector(`#cat-3-${i + 1} img`);
-        
-        imgElement.onerror = () => {
-            imgElement.src = 'images/no_image.png';
-        };
-        imgElement.src = movie.image_url;
-        imgElement.alt = `Affiche du film ${movie.title}`;
-
-        document.querySelector(`#cat-3-${i + 1} h3`).textContent = movie.title;
-
-        const detailsButton = document.querySelector(`#cat-3-${i + 1} .details-button`);
-        detailsButton.setAttribute('movie-id', movie.id);
-    }
-}
-
-async function displayCustomCategoryMovies() {
-    const category = selectElement.value;
-    const movies = await fetchCategoryMovies(category);
-    if (!movies) return;
-
-    for (let i = 0; i < movies.length; i++) {
-        const movie = movies[i];
-        const imgElement = document.querySelector(`#cat-custom-${i + 1} img`);
-        imgElement.onerror = () => {
-            imgElement.src = 'images/no_image.png';
-        };
-        imgElement.src = movie.image_url;
-        imgElement.alt = `Affiche du film ${movie.title}`;
-
-        document.querySelector(`#cat-custom-${i + 1} h3`).textContent = movie.title;
-
-        const detailsButton = document.querySelector(`#cat-custom-${i + 1} .details-button`);
-        detailsButton.setAttribute('movie-id', movie.id);
-
-    }
-}
-
-async function displayCategoryMovies() {
-    await displayCategory1Movies();
-    await displayCategory2Movies();
-    await displayCategory3Movies();
-    await displayCustomCategoryMovies();
 }
 
 async function displayCustomCategoryChoices() {
@@ -181,21 +174,33 @@ async function displayCustomCategoryChoices() {
     }
 }
 
-function formatCurrency(amount) {
-    if (!amount) return "";    
-    if (isNaN(amount)) return "";
-    
-    if (amount >= 1000000000) {
-        return "$" + (amount / 1000000000).toFixed(2) + "B";
-    } else if (amount >= 1000000) {
-        return "$" + (amount / 1000000).toFixed(2) + "M";
-    } else if (amount >= 1000) {
-        return "$" + (amount / 1000).toFixed(2) + "k";
-    } else {
-        return "$" + amount;
-    }
-}
+async function displayCustomCategory() {
+    const category = selectElement.value;
+    const movies = await fetchCategoryMovies(category);
+    if (!movies) return;
 
+    if (document.getElementById('cat-custom-grid')) {
+        document.getElementById('cat-custom-grid').innerHTML = '';
+    }
+
+    for (let j = 0; j < movies.length; j++) {
+        const movie = movies[j];
+        const movieCard = createMovieCard(movie);
+
+        const movieCardElement = movieCard.querySelector('.movie-card');
+        
+        if (j >= 2 && j <= 3) {
+            movieCardElement.classList.add('hidden', 'md:block');
+        }
+        if (j >= 4) {
+            movieCardElement.classList.add('hidden', 'lg:block');
+        }
+
+        document.getElementById('cat-custom-grid').appendChild(movieCard);
+    }
+    
+    setupCustomShowMoreButton();
+}
 
 async function displayModal(movieId) {
     try {

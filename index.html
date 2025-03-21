@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/config.js" defer></script>
+    <script src="scripts/utils.js" defer></script>
     <script src="scripts/display.js" defer></script>
     <script src="scripts/api.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -27,14 +28,13 @@
             <h1 class="hidden md:block text-slate-50 text-4xl lg:text-5xl font-light">Vidéo à la demande</h1>
         </div>
     </header>
-    <main class="flex flex-col items-center gap-12">
-        
+    <main class="flex flex-col items-center gap-12">     
         <section id="meilleur-film" 
-        class="flex flex-col items-center md:items-start mt-7 gap-8 w-full">
+            class="flex flex-col items-center md:items-start mt-7 gap-8 w-full">
 
             <h2 id="meilleur-film-title" 
                 class="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Meilleur film
+                Meilleur film
             </h2>
 
             <div id="meilleur-film-content" class="flex flex-col md:flex-row md:h-72 lg:h-96 gap-4 border-8 border-slate-950 p-3 w-full">
@@ -44,222 +44,13 @@
                     <p class="text-base md:text-lg lg:text-xl font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam illum, enim alias dolore quaerat itaque sapiente libero! Deserunt porro non sapiente modi quod eum iusto, officiis nemo obcaecati doloremque reprehenderit.</p>
                     <button movie-id="" class="details-button text-lg md:text-xl lg:text-2xl bg-red-600 text-white w-fit px-6 py-2 rounded-3xl self-center md:self-end mt-auto">Détails</button>
                 </div>
-            </div>
-        
+            </div>       
         </section>
 
-        <section id="cat-1"
-            class="flex flex-col items-center md:items-start gap-8 w-full">
+        <!-- Les catégories seront insérées ici -->
 
-            <h2 id="cat-1-title"
-                class="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Catégorie 1
-            </h2>
-
-            <div id="cat-1-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
-                <div id="cat-1-1"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-1-2"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 2 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-1-3"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 3 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-1-4"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 4 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-1-5"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 5 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-1-6"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 6 categorie 1</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-            </div>
-            <button id="cat-1-show-more" show-more="false" class="text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
-                Voir plus
-            </button>
-
-        </section>
-        <section id="cat-2 "
-            class="flex flex-col items-center md:items-start gap-8 w-full">
-
-            <h2 id="cat-2-title"
-                class="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Catégorie 2
-            </h2>
-
-            <div id="cat-2-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
-                <div id="cat-2-1"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-2-2"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 2 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-2-3"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 3 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-2-4"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 4 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-2-5"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 5 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-2-6"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 6 categorie 2</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-            </div>
-            <button id="cat-2-show-more" show-more="false" class="text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
-                Voir plus
-            </button>
-
-        </section>
-        <section id="cat-3"
-            class="flex flex-col items-center md:items-start gap-8 w-full">
-
-            <h2 id="cat-3-title"
-            class="text-4xl md:text-5xl lg:text-6xl font-semibold">
-            Catégorie 3
-            </h2>
-
-            <div id="cat-3-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
-                <div id="cat-3-1"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-3-2"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 2 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-3-3"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 3 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-3-4"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 4 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-3-5"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 5 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-3-6"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 6 categorie 3</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-            </div>
-            <button id="cat-3-show-more" show-more="false" class="text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
-                Voir plus
-            </button>
-
-        </section>
         <section id="cat-custom"
-        class="flex flex-col items-center md:items-start gap-8 w-full">
+            class="flex flex-col items-center md:items-start gap-8 w-full">
 
             <div id="cat-custom-title"
             class="flex flex-row items-center gap-2">
@@ -275,61 +66,8 @@
                 </div>
             </div>
             <div id="cat-custom-grid"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
-                <div id="cat-custom-1"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-custom-2"
-                class="relative">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 2 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-custom-3"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 3 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-custom-4"
-                class="relative hidden md:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 4 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-custom-5"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 5 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
-                <div id="cat-custom-6"
-                class="relative hidden lg:block">
-                    <img src="images/no_image.png" alt="Image film"
-                        class="object-cover aspect-square w-full">
-                    <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
-                        <h3 class="text-slate-50 text-xl font-semibold">Titre du film 6 categorie custom</h3>
-                        <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
-                    </div>
-                </div>
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
+                <!-- Les films seront insérés ici -->
             </div>
             <button id="cat-custom-show-more" show-more="false" class="text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
                 Voir plus
@@ -380,5 +118,31 @@
             </div>
         </div>
     </div>
+
+
+    <template id="category-section-template">
+        <section class="category-section flex flex-col items-center md:items-start gap-8 w-full">
+            <h2 class="category-title text-4xl md:text-5xl lg:text-6xl font-semibold">
+                Catégorie
+            </h2>
+            <div class="category-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6 w-full">
+                <!-- Les films seront insérés ici -->
+            </div>
+            <button show-more="false" class="show-more-button text-xl md:text-2xl lg:hidden bg-red-600 text-white w-fit px-14 py-2 rounded-3xl self-center mt-auto">
+                Voir plus
+            </button>
+        </section>
+    </template>
+
+    <template id="movie-card-template">
+        <div class="movie-card relative">
+            <img src="images/no_image.png" alt="Image film"
+                class="object-cover aspect-square w-full">
+            <div class="absolute inset-x-0 h-[40%] top-[12.5%] bg-slate-950/50 flex flex-col justify-between px-8 py-4 gap-4">
+                <h3 class="text-slate-50 text-xl font-semibold">Titre du film 1 categorie 2</h3>
+                <button movie-id="" class="details-button bg-slate-800 text-slate-50 w-fit self-end px-10 py-2 rounded-3xl">Détails</button>
+            </div>
+        </div>
+    </template>
 </body>
 </html>
