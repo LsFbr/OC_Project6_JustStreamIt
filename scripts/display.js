@@ -23,13 +23,12 @@ document.addEventListener('click', (event) => {
 });
 
 function setupShowMoreButtons() {
-    const categoryIdentifiers = ['cat-1', 'cat-2', 'cat-3'];
-    for (let i = 0; i < categoryIdentifiers.length; i++) {
+    for (let i = 0; i < CATEGORIES.length; i++) {
 
-        const buttonElement = document.getElementById(`${categoryIdentifiers[i]}-show-more`);
+        const buttonElement = document.getElementById(`cat-${i + 1}-show-more`);
         if (!buttonElement) continue;
         
-        const hiddenMovies = document.querySelectorAll(`#${categoryIdentifiers[i]}-grid .hidden`);
+        const hiddenMovies = document.querySelectorAll(`#cat-${i + 1}-grid .hidden`);
 
         buttonElement.addEventListener('click', () => {
             
@@ -62,7 +61,6 @@ function setupCustomShowMoreButton() {
     const hiddenMovies = document.querySelectorAll('#cat-custom-grid .hidden');
     
     newButton.addEventListener('click', () => {
-        console.log(hiddenMovies);
          
         let isShowingMore = newButton.getAttribute('show-more') === 'true';
         
@@ -154,7 +152,13 @@ async function displayCategories() {
 
             categorySection.querySelector('.category-grid').appendChild(movieCard);
         }
-        
+
+        const movieCardsNumber = categorySection.querySelectorAll('.movie-card').length;
+        const showMoreButtonElement = categorySection.querySelector('.show-more-button');
+        const gridElement = categorySection.querySelector('.category-grid');
+
+        setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement);
+
         const customCategorySection = document.getElementById('cat-custom');
         document.querySelector('main').insertBefore(categorySection, customCategorySection);
     }
@@ -179,8 +183,14 @@ async function displayCustomCategory() {
     const movies = await fetchCategoryMovies(category);
     if (!movies) return;
 
-    if (document.getElementById('cat-custom-grid')) {
-        document.getElementById('cat-custom-grid').innerHTML = '';
+    const customCategorySection = document.getElementById('cat-custom');
+    const gridElement = document.getElementById('cat-custom-grid');
+
+    console.log(typeof customCategorySection);
+    console.log(typeof document);
+
+    if (gridElement) {
+        gridElement.innerHTML = '';
     }
 
     for (let j = 0; j < movies.length; j++) {
@@ -191,15 +201,42 @@ async function displayCustomCategory() {
         
         if (j >= 2 && j <= 3) {
             movieCardElement.classList.add('hidden', 'md:block');
-        }
-        if (j >= 4) {
+        } else if (j >= 4) {
             movieCardElement.classList.add('hidden', 'lg:block');
         }
 
-        document.getElementById('cat-custom-grid').appendChild(movieCard);
+        gridElement.appendChild(movieCard);
     }
+
+
+    const movieCardsNumber = customCategorySection.querySelectorAll('.movie-card').length;
+    const showMoreButtonElement = document.getElementById('cat-custom-show-more');
+    
+    setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement);
     
     setupCustomShowMoreButton();
+}
+
+function setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement) {
+    if (movieCardsNumber <= 1) {
+        gridElement.classList.add('grid-rows-1');
+        showMoreButtonElement.classList.add('hidden');
+    } else if (movieCardsNumber <= 2) {
+        gridElement.classList.add('grid-rows-2', 'md:grid-rows-1');
+        showMoreButtonElement.classList.add('hidden');
+    } else if (movieCardsNumber <= 3) {
+        gridElement.classList.add('grid-rows-2', 'lg:grid-rows-1');
+        showMoreButtonElement.classList.add('md:hidden');
+        showMoreButtonElement.classList.remove('hidden', 'lg:hidden');
+    } else if (movieCardsNumber <= 4) {
+        gridElement.classList.add('grid-rows-2');
+        showMoreButtonElement.classList.add('md:hidden');
+        showMoreButtonElement.classList.remove('hidden', 'lg:hidden');
+    } else if (movieCardsNumber > 4) {
+        gridElement.classList.add('grid-rows-2');
+        showMoreButtonElement.classList.add('lg:hidden');
+        showMoreButtonElement.classList.remove('hidden', 'md:hidden');
+    }
 }
 
 async function displayModal(movieId) {

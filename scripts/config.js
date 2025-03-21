@@ -4,4 +4,5 @@ const CATEGORIES = [
     'Action',
     'Comedy',
     'Drama',
+    'Reality-TV',
 ]
