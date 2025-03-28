@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
     await displayBestMovie();
+    await displayBestMovies();
     await displayCategories();
     await displayCustomCategoryChoices();
     await displayCustomCategory();
@@ -9,12 +10,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function setupShowMoreButtons() {
-    for (let i = 0; i < CATEGORIES.length; i++) {
+    for (let i = 0; i < CATEGORIES.length+1; i++) {
 
-        const buttonElement = document.getElementById(`cat-${i + 1}-show-more`);
+        const buttonElement = document.getElementById(`cat-${i}-show-more`);
         if (!buttonElement) continue;
         
-        const hiddenMovies = document.querySelectorAll(`#cat-${i + 1}-grid .hidden`);
+        const hiddenMovies = document.querySelectorAll(`#cat-${i}-grid .hidden`);
 
         buttonElement.addEventListener('click', () => {
             
@@ -81,7 +82,6 @@ function setupModal() {
     });
 }
 
-
 async function displayBestMovie() {
     const movie = await fetchBestMovie();
     if (!movie) return;
@@ -134,6 +134,37 @@ function createMovieCard(movie) {
     detailsButton.setAttribute('data-movie-id', movie.id);
 
     return cloneMovieCard;
+}
+
+async function displayBestMovies() {
+    const movies = await fetchBestMovies();
+    if (!movies) return;
+
+    const bestMoviesSection = createCategorySection('0', "Meilleurs films");
+
+    for (let i = 0; i < movies.length; i++) {
+        const movie = movies[i];
+        const movieCard = createMovieCard(movie);
+
+        const movieCardElement = movieCard.querySelector('.movie-card');
+
+        if (i >= 2 && i <= 3) {
+            movieCardElement.classList.add('hidden', 'md:block');
+        }
+        if (i >= 4) {
+            movieCardElement.classList.add('hidden', 'lg:block');
+        }
+
+        bestMoviesSection.querySelector('.category-grid').appendChild(movieCard);
+    }
+
+    const movieCardsNumber = bestMoviesSection.querySelectorAll('.movie-card').length;
+    const showMoreButtonElement = bestMoviesSection.querySelector('.show-more-button');
+    const gridElement = bestMoviesSection.querySelector('.category-grid');
+    setupResponsiveGrid(movieCardsNumber, gridElement, showMoreButtonElement);
+
+    const bestMovieSectionElement = document.getElementById('meilleur-film');
+    document.querySelector('main').insertBefore(bestMoviesSection, bestMovieSectionElement.nextSibling);
 }
 
 async function displayCategories() {
