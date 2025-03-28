@@ -1,25 +1,11 @@
 document.addEventListener('DOMContentLoaded', async function() {
     await displayBestMovie();
     await displayCategories();
-    await displayCustomCategory();
     await displayCustomCategoryChoices();
+    await displayCustomCategory();
     setupShowMoreButtons();
-});
-
-const selectElement = document.getElementById('cat-custom-select');
-selectElement.addEventListener('change', displayCustomCategory);
-
-document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('details-button')) {
-        const movieId = event.target.getAttribute('data-movie-id');
-        displayModal(movieId);
-    }
-});
-
-document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('modal-close')) {
-        closeModal();
-    }
+    setupCustomCategorySelect();
+    setupModal();
 });
 
 function setupShowMoreButtons() {
@@ -74,6 +60,27 @@ function setupCustomShowMoreButton() {
         newButton.textContent = isShowingMore ? 'Voir moins' : 'Voir plus';
     });
 }
+
+function setupCustomCategorySelect() {
+    const selectElement = document.getElementById('cat-custom-select');
+    selectElement.addEventListener('change', displayCustomCategory);
+}
+
+function setupModal() {
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('details-button')) {
+            const movieId = event.target.getAttribute('data-movie-id');
+            displayModal(movieId);
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('modal-close')) {
+            closeModal();
+        }
+    });
+}
+
 
 async function displayBestMovie() {
     const movie = await fetchBestMovie();
@@ -178,6 +185,7 @@ async function displayCustomCategoryChoices() {
 }
 
 async function displayCustomCategory() {
+    const selectElement = document.getElementById('cat-custom-select');
     const category = selectElement.value;
     const movies = await fetchCategoryMovies(category);
     if (!movies) return;
